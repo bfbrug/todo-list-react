@@ -1,3 +1,4 @@
+import plus from '../assets/plus.svg';
 import styles from './NewTask.module.css';
 
 export function NewTask() {
@@ -5,7 +6,9 @@ export function NewTask() {
     <div className={styles.container}>
       <form action="">
         <input type="text" placeholder="Adicine uma nova tarefa" />
-        <button type="submit">Criar</button>
+        <button type="submit">
+          Criar <img src={plus} alt="" />
+        </button>
       </form>
     </div>
   );

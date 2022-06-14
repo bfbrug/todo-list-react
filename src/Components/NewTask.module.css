@@ -1,12 +1,55 @@
 .container {
-  margin-top: -10rem;
+  max-width: 46rem;
+  height: 54px;
+  margin: -27px auto 0 auto;
 
-  width: 46rem;
+  display:flex;
+  align-items: center;
+  justify-content: flex-start;
+
+
 }
 
 .container form {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
+}
 
+.container form input {
+  width: 638px;
+  height:54px;
+  padding: 0 1rem;
+  border-radius: 0.25rem;
+
+  color: var(--gray-300);
+  border: 1px solid var(--gray-700);
+  background: var(--gray-500);
+
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+.container form button[type='submit'] {
+  width: 90px;
+  height: 100%;
+
+  color: var(--gray-100);
+  background: var(--blue-dark);
+  border-radius: 0.25rem;
+  border: 0;
+  padding:0 1rem;
+
+  font-size: 0.875rem;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition: filter 0.2s;
+
+}
+.container form button[type='submit']:hover {
+  filter: brightness(0.9);
 }

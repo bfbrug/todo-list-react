@@ -1,11 +1,18 @@
-.header{
+.headerContainer{
   background: var(--gray-700);
-  display: flex;
-  justify-content: center;
-  padding: 4.5em 0;
 }
 
-.header img {
+.headerContent {
+  max-width: 736px;
+  height: 12.5rem;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerContent img {
   width: 7.875rem;
   height: 3rem;
 }
