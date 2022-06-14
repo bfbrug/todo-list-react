@@ -1,0 +1,113 @@
+
+.taskContent{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  border-radius: 0.25rem;
+  border: 1px solid var(--gray-400);
+  padding: 16px;
+  margin-bottom: 12px;
+
+  background: var(--gray-500);
+}
+
+.taskContent label {
+  display: block;
+  position: relative;
+  padding-left: 1.7rem;
+}
+
+.taskContent label input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.taskCheckbox {
+  position: absolute;
+  top: 0px;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: transparent;
+  border: 2px solid var(--blue);
+}
+
+
+.taskCheckbox:hover {
+  background: var(--gray-600);
+  border-color: var(--blue-dark);
+}
+
+.taskCheckbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+label > input:checked ~ .taskCheckbox:after {
+  display: block;
+}
+
+input[type="checkbox"]:checked + p {
+  text-decoration:line-through;
+  color: var(--gray-300);
+}
+
+label > input:checked ~ .taskCheckbox {
+  background: var(--purple-dark);
+  border-color: transparent;
+}
+
+label > input:checked ~ .taskCheckbox:hover {
+  background: var(--purple);
+
+}
+
+label .taskCheckbox:after {
+  left: 6px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+}
+
+label, .taskCheckbox {
+  cursor: pointer;
+}
+
+.taskContent p {
+  color: var(--gray-200);
+  font-weight: normal;
+  line-height: 1.6;
+  font-size: 0.875rem;
+  margin:  0 12px;
+}
+
+.buttonTrash {
+  background: transparent;
+  border: 0;
+  color: var(--gray-300);
+  cursor: pointer;
+  line-height: 0;
+  padding: 4px;
+  border-radius: 0.5rem;
+
+  transition: color 0.2s;
+}
+
+.buttonTrash:hover {
+  box-sizing: initial;
+  color: var(--red);
+  background: var(--gray-400);
+
+}

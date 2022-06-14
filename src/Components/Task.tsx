@@ -1,6 +1,28 @@
-import { Trash } from 'phosphor-react';
+import { v4 as uuidv4 } from 'uuid';
 
 import styles from './Task.module.css';
+import { TaskItem } from './TaskItem';
+
+const tasks = [
+  {
+    id: uuidv4(),
+    content:
+      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
+    status: false,
+  },
+  {
+    id: uuidv4(),
+    content:
+      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
+    status: true,
+  },
+  {
+    id: uuidv4(),
+    content:
+      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
+    status: true,
+  },
+];
 
 export function Task() {
   return (
@@ -15,35 +37,16 @@ export function Task() {
       </header>
 
       <div className={styles.taskBox}>
-        <div className={styles.taskContent}>
-          <p>
-            Integer urna interdum massa libero auctor neque turpis turpis
-            semper. Duis vel sed fames integer.
-          </p>
-          <button type="button" title="Deletar tarefa">
-            <Trash size={16} />
-          </button>
-        </div>
-
-        <div className={styles.taskContent}>
-          <p>
-            Integer urna interdum massa libero auctor neque turpis turpis
-            semper. Duis vel sed fames integer.
-          </p>
-          <button type="button" title="Deletar tarefa">
-            <Trash size={16} />
-          </button>
-        </div>
-
-        <div className={styles.taskContent}>
-          <p>
-            Integer urna interdum massa libero auctor neque turpis turpis
-            semper. Duis vel sed fames integer.
-          </p>
-          <button type="button" title="Deletar tarefa">
-            <Trash size={16} />
-          </button>
-        </div>
+        {tasks.map((task) => {
+          return (
+            <TaskItem
+              key={task.id}
+              id={task.id}
+              taskContent={task.content}
+              status={task.status}
+            />
+          );
+        })}
       </div>
     </main>
   );
