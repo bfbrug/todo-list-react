@@ -1,28 +1,25 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
+import { ITask } from '../App';
 import plus from '../assets/plus.svg';
 import styles from './NewTask.module.css';
 
-interface ITask {
-  id: string;
-  content: string;
-  status: boolean;
-}
 interface ITaskProps {
-  addTask: () => void;
+  addTask: (task: ITask) => void;
 }
 
 export function NewTask({ addTask }: ITaskProps) {
-  const [newTasks, setNewTasks] = useState(['']);
-
   const [newTaskText, setNewTaskText] = useState('');
 
   function handleCreateNewTask(event: FormEvent) {
     event.preventDefault();
 
-    addTask;
-
-    setNewTasks([...newTasks, newTaskText]);
+    addTask({
+      id: uuidv4(),
+      content: newTaskText,
+      status: false,
+    });
 
     setNewTaskText('');
   }
@@ -32,15 +29,18 @@ export function NewTask({ addTask }: ITaskProps) {
     setNewTaskText(event.target.value);
   }
 
+  const disabledBottom = newTaskText.length === 0;
+
   return (
     <div className={styles.container}>
       <form onSubmit={handleCreateNewTask}>
         <input
           type="text"
           onChange={handleNewTask}
+          value={newTaskText}
           placeholder="Adicine uma nova tarefa"
         />
-        <button type="submit">
+        <button type="submit" disabled={disabledBottom}>
           Criar <img src={plus} alt="" />
         </button>
       </form>

@@ -1,49 +1,53 @@
-import { v4 as uuidv4 } from 'uuid';
+import { ClipboardText } from 'phosphor-react';
 
+import { ITask } from '../App';
 import styles from './Task.module.css';
 import { TaskItem } from './TaskItem';
 
-const tasks = [
-  {
-    id: uuidv4(),
-    content:
-      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    status: false,
-  },
-  {
-    id: uuidv4(),
-    content:
-      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    status: true,
-  },
-  {
-    id: uuidv4(),
-    content:
-      'Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.',
-    status: true,
-  },
-];
+interface ITasksProps {
+  tasks: ITask[];
+  onUpdateTask: (id: string, status: boolean) => void;
+  onRemoveTask: (id: string) => void;
+}
 
-export function Task() {
+export function Task({ tasks, onUpdateTask, onRemoveTask }: ITasksProps) {
+  const totalTasks = tasks.length;
+  const totalCompletedTasks = tasks.filter(
+    (task) => task.status === true,
+  ).length;
+
   return (
     <main>
       <header className={styles.task}>
         <strong>
-          Tarefas criadas <span>0</span>
+          Tarefas criadas <span>{totalTasks}</span>
         </strong>
         <strong>
-          Concluídas <span>2 de 5</span>
+          Concluídas{' '}
+          <span>
+            {totalCompletedTasks} de {totalTasks}
+          </span>
         </strong>
       </header>
 
       <div className={styles.taskBox}>
+        {tasks.length === 0 && (
+          <div className={styles.emptyTasksBox}>
+            <ClipboardText size={52} />
+            <strong>Você ainda não tem tarefas cadastradas</strong>
+            <p>Crie tarefas e organize seus itens a fazer</p>
+          </div>
+        )}
+
         {tasks.map((task) => {
           return (
             <TaskItem
               key={task.id}
               id={task.id}
-              taskContent={task.content}
+              onUpdateTask={onUpdateTask}
+              onRemoveTask={onRemoveTask}
               status={task.status}
+              content={task.content}
             />
           );
         })}
